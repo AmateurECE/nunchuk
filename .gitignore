@@ -1,0 +1,16 @@
+.Module.symvers.cmd
+.bash_history
+.modules.order.cmd
+.nunchuk.ko.cmd
+.nunchuk.mod.cmd
+.nunchuk.mod.o.cmd
+.nunchuk.o.cmd
+Module.symvers
+modules.order
+nunchuk.dwo
+nunchuk.ko
+nunchuk.mod
+nunchuk.mod.c
+nunchuk.mod.dwo
+nunchuk.mod.o
+nunchuk.o
