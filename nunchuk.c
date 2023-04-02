@@ -26,8 +26,6 @@ static int nunchuk_read_registers(struct i2c_client *client,
 	char reg_value[6] = { 0 };
 
 	// For the Nunchuk, each read triggers the next read.
-	// usleep_range(10000, 20000);
-
 	result = i2c_master_send(client, read_command, sizeof(read_command));
 	if (sizeof(read_command) != result) {
 		dev_err(&client->dev,
@@ -35,8 +33,7 @@ static int nunchuk_read_registers(struct i2c_client *client,
 		return result;
 	}
 
-	// usleep_range(9000, 11000);
-	mdelay(2);
+	usleep_range(1900, 2100);
 
 	result = i2c_master_recv(client, reg_value, sizeof(reg_value));
 	if (sizeof(reg_value) != result) {
@@ -81,7 +78,7 @@ static int nunchuk_init(struct nunchuk_device *nunchuk)
 		return result;
 	}
 
-	// See https://www.kernel.org/doc/Documentation/timers/timers-howto.txt
+	// See https://docs.kernel.org/timers/timers-howto.html
 	usleep_range(900, 1100);
 
 	result =
