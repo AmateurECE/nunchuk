@@ -1,19 +1,16 @@
 # Compiling
 
-The gist:
+From the current directory:
 
 ```bash-session
 $ make -C kernel-source/ M=$PWD
 ```
 
-For us:
-
-```bash-session
-$ make -C ~/Git/tinyware/build/sources/linux-6.3-rc3 CROSS_COMPILE=arm-linux-gnueabihf ARCH=arm O=~/Git/tinyware/build/boneblack/linux/build M=/home/edtwardy/Git/nunchuk-driver
-```
+Don't forget to set `CROSS_COMPILE` AND `ARCH` for cross-compilation, and `O`
+for out-of-tree builds!
 
 # Formatting
 
 ```bash-session
-$ clang-format -i -style=file:/home/edtwardy/Git/tinyware/build/sources/linux-6.3-rc3/.clang-format nunchuk.c
+$ clang-format -i -style=file:kernel-source/.clang-format nunchuk.c
 ```
