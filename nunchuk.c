@@ -74,8 +74,9 @@ static int nunchuk_init(struct nunchuk_device *nunchuk)
 	result = i2c_master_send(client, first_command, sizeof(first_command));
 	if (sizeof(first_command) != result) {
 		dev_err(&client->dev,
-			"Failed to send first command to nunchuk!");
-		return result;
+			"Failed to send first command to nunchuk! result=%d",
+			result);
+		return -EIO;
 	}
 
 	// See https://docs.kernel.org/timers/timers-howto.html
@@ -85,8 +86,9 @@ static int nunchuk_init(struct nunchuk_device *nunchuk)
 		i2c_master_send(client, second_command, sizeof(second_command));
 	if (sizeof(second_command) != result) {
 		dev_err(&client->dev,
-			"Failed to send second command to nunchuk!");
-		return result;
+			"Failed to send second command to nunchuk! result=%d",
+			result);
+		return -EIO;
 	}
 
 	result = nunchuk_read_registers(nunchuk->client, &registers);
